@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.shum.crudapp1.dto.BookDTO;
 import ru.shum.crudapp1.service.BookService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class CrudController {
     private final BookService bookService;
 
     @PostMapping("/book/add")
-    public void addBook(@RequestBody BookDTO bookDTO) {
+    public void addBook(@Valid @RequestBody BookDTO bookDTO) {
         bookService.addBook(bookDTO);
 
     }
@@ -27,13 +29,13 @@ public class CrudController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(book);
     }
 
-    @PutMapping("/book/update/{id}")
+    @PutMapping("/book/get/{id}")
     public void updateBook(@RequestBody BookDTO bookDTO, @PathVariable Long id) {
         bookService.updateBook(bookDTO, id);
     }
 
-    @DeleteMapping("/book/delete")
-    public void deleteBook(@RequestBody BookDTO bookDTO) {
-
+    @DeleteMapping("/book/delete/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
     }
 }
