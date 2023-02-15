@@ -15,20 +15,21 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "book_name", unique = true)
+    @Column(name = "book_name" , unique = true)
     private String name;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+    @Cascade({org.hibernate.annotations.CascadeType.PERSIST , org.hibernate.annotations.CascadeType.DELETE})
     private List<Author> authors = new ArrayList<>();
 
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+    @Cascade({org.hibernate.annotations.CascadeType.PERSIST , org.hibernate.annotations.CascadeType.DELETE})
     private Passport passport;
 
 
