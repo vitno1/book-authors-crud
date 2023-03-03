@@ -37,7 +37,9 @@ public class BookService {
 
 
     public BookDTO findBookById(Long id) {
+
         Book book = bookRepository.findById(id).orElseThrow(new BookNotFoundException("Книгу с указанным id " + id + " не удается найти"));
+
         List<AuthorDTO> authors = new ArrayList<>();
         for (Author author : book.getAuthors()) {
             String name = author.getName();
@@ -64,8 +66,10 @@ public class BookService {
                 " Пасспорт книги " + book.getPassport() + " успешно добавлены в БД");
     }
 
+
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 }
+
 

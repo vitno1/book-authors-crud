@@ -21,7 +21,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "book_name", unique = true)
+    @Column(name = "book_name" , unique = true)
     private String name;
 
     @OneToMany
@@ -29,7 +29,7 @@ public class Book {
     private List<Author> authors = new ArrayList<>();
 
     @OneToOne
-    @Cascade({org.hibernate.annotations.CascadeType.PERSIST, org.hibernate.annotations.CascadeType.DELETE})
+    @Cascade({org.hibernate.annotations.CascadeType.PERSIST , org.hibernate.annotations.CascadeType.DELETE})
     private Passport passport;
 
 
