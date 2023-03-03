@@ -1,6 +1,7 @@
 package ru.shum.crudapp1.dto;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;

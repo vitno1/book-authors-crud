@@ -37,7 +37,7 @@ public class BookService {
 
 
     public BookDTO findBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
+        Book book = bookRepository.findById(id).orElseThrow(new BookNotFoundException("Книгу с указанным id " + id + " не удается найти"));
         List<AuthorDTO> authors = new ArrayList<>();
         for (Author author : book.getAuthors()) {
             String name = author.getName();
@@ -49,7 +49,7 @@ public class BookService {
     }
 
     public void updateBook(BookDTO bookDTO, Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
+        Book book = bookRepository.findById(id).orElseThrow(new BookNotFoundException("Книгу с указанным id " + id + " не удается найти"));
         book.setName(bookDTO.getName());
         book.getPassport().setNumber(bookDTO.getPassport());
         for (AuthorDTO authorDTO : bookDTO.getAuthors()) {
